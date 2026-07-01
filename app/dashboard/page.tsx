@@ -4,18 +4,22 @@ import BusinessFeed from "../components/BusinessFeed";
 
 export default function DashboardPage() {
   return (
-
-    
     <AppShell>
 
-      {/* SOLO CONTENIDO (NO HEADER DUPLICADO) */}
-      
+      {/* CONTENIDO (MISMO ESTILO, SOLO ORDENADO) */}
+      <div className="p-4 space-y-4">
 
-      <div className="p-4 rounded-2xl border border-gray-800 bg-black/40">
-        <TrendBar />
+        {/* BLOQUE TREND (igual tu estilo) */}
+        <div className="p-4 rounded-2xl border border-gray-800 bg-black/40">
+          <TrendBar />
+        </div>
+
+        {/* FEED */}
+        <div className="p-4 rounded-2xl border border-gray-800 bg-black/40">
+          <BusinessFeed />
+        </div>
+
       </div>
-
-      <BusinessFeed />
 
     </AppShell>
   );
