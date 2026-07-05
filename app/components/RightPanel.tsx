@@ -5,9 +5,9 @@ import { useRouter, usePathname } from "next/navigation";
 const menu = [
   
   { name: "🏠 Inicio", path: "/dashboard" },
-  { name: "📣 Marketing", path: "/dashboard/marketing-digital" },
-  { name: "🛒 Ecommerce", path: "/dashboard/ecommerce" },
-  { name: "📦 Dropshipping / Tienda", path: "/dashboard/dropshipping" },
+  { name: "📣 Marketing Digital / Publicidad", path: "/dashboard/marketing-digital" },
+  { name: "🛒 Ecommerce / Paginas Web", path: "/dashboard/ecommerce" },
+  { name: "📦 Dropshipping / Marketplace / Tienda", path: "/dashboard/dropshipping" },
   { name: "🚚 Domicilios", path: "/dashboard/domicilios" },
   { name: "📰 Noticias", path: "/dashboard/noticias" },
   { name: "🎉 Eventos", path: "/dashboard/eventos" },

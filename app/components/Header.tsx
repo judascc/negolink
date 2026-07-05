@@ -1,10 +1,32 @@
 "use client";
 
-export default function Header() {
-  return (
-    <div className="w-full flex flex-col md:flex-row md:items-center gap-3 md:gap-6 p-4">
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
-      {/* BRAND + CONTEXTO */}
+export default function Header() {
+  const [open, setOpen] = useState(false);
+  const router = useRouter();
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    router.push("/");
+  };
+
+  const [user, setUser] = useState<any>(null);
+
+useEffect(() => {
+  const storedUser = localStorage.getItem("user");
+
+  if (storedUser) {
+    setUser(JSON.parse(storedUser));
+  }
+}, []);
+
+  return (
+    <div className="flex flex-col md:flex-row items-center gap-3 w-full">
+
+      {/* BRAND */}
       <div className="flex flex-col text-center md:text-left shrink-0">
 
         <h1 className="text-2xl font-bold tracking-tight leading-none">
@@ -18,17 +40,13 @@ export default function Header() {
 
       </div>
 
-      {/* SEARCH INTELIGENTE */}
+      {/* SEARCH */}
       <div className="flex-1 w-full">
-
         <div className="
           flex items-center gap-2
           px-3 py-2 md:px-4 md:py-2
-          rounded-xl
-          bg-black/60
-          border border-white/10
-          focus-within:border-[#2dd4bf]/50
-          transition
+          rounded-xl bg-black/60 border border-white/10
+          focus-within:border-[#2dd4bf]/50 transition
         ">
 
           <span className="text-white/40">🤖</span>
@@ -43,55 +61,24 @@ export default function Header() {
           </span>
 
         </div>
-
       </div>
 
-      {/* USER PANEL */}
-      <div className="flex items-center justify-between md:justify-end gap-2 w-full md:w-auto">
+      {/* RIGHT PANEL */}
+      <div className="flex items-center gap-2">
 
-        {/* NOTIFICACIONES */}
-        <button className="
-          relative px-3 py-2 rounded-xl
-          border border-white/10
-          hover:border-white/20
-          transition
-        ">
+        {/* NOTIFICATIONS */}
+        <button className="relative px-3 py-2 rounded-xl border border-white/10 hover:border-white/20 transition">
           🔔
           <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full" />
         </button>
 
-        {/* PERFIL */}
-        <div className="
-          flex items-center gap-2
-          px-3 py-2 rounded-xl
-          border border-white/10
-          bg-black/30
-          min-w-[120px]
-        ">
-
-          <div className="
-            w-8 h-8 rounded-full
-            bg-gradient-to-r from-[#a449a3] to-[#2dd4bf]
-          " />
-
-          <div className="text-xs leading-tight">
-            <p className="text-white font-medium">Usuario</p>
-            <p className="text-white/40">Plan Pro</p>
-          </div>
-
-        </div>
-
-        {/* ACCIONES */}
-        <button className="
-          hidden md:block
-          px-3 py-2 rounded-xl
-          border border-white/10
-          hover:bg-white/10
-          transition text-xs
-        ">
-          Dashboard
+        {/* MESSAGES */}
+        <button className="relative px-3 py-2 rounded-xl border border-white/10 hover:border-white/20 transition">
+          💬
+          <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full" />
         </button>
 
+        {/* CTA */}
         <button className="
           px-3 py-2 rounded-xl
           bg-gradient-to-r from-[#a449a3] to-[#2dd4bf]
@@ -100,6 +87,95 @@ export default function Header() {
         ">
           Publicar
         </button>
+
+        {/* PROFILE DROPDOWN */}
+        <div className="relative">
+
+          {/* TRIGGER */}
+          <button
+            onClick={() => setOpen(!open)}
+            className="flex items-center gap-2 px-3 py-2 rounded-xl border border-white/10 bg-black/30"
+          >
+
+            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-[#a449a3] to-[#2dd4bf]" />
+
+            <div className="text-left text-xs leading-tight hidden md:block">
+              <p className="text-white font-medium">
+                  {user ? `${user.name} ${user.lastname}` : "Usuario"}
+                </p>
+              <p className="text-white/40">Nivel Pro</p>
+            </div>
+
+            <span className="text-white/50 text-xs">
+              {open ? "▲" : "▼"}
+            </span>
+
+          </button>
+
+          {/* DROPDOWN */}
+          {open && (
+            <div className="absolute right-0 mt-2 w-56 rounded-xl border border-white/10 bg-black/90 backdrop-blur-xl p-2 z-50">
+
+              
+
+              {/* ✅ FIXED ROUTE */}
+
+              {/* INFO */}
+              <div className="px-3 py-2 text-xs text-white/40">
+                <p className="text-white font-medium">
+                  {user ? `${user.name} ${user.lastname}` : "Usuario"}
+                </p>
+                <p>Nivel: Pro</p>
+              </div>
+
+              <div className="border-t border-white/10 my-1" />
+
+              <Link
+                href="/dashboard/profile"
+                className="w-full text-left px-3 py-2 text-sm hover:bg-white/10 rounded-lg block"
+              >
+                👤 Perfil
+              </Link>
+
+              <div className="border-t border-white/10 my-1" />              
+
+              <Link
+                href="/dashboard/dashboard-negocios"
+                 className="w-full text-left px-3 py-2 text-sm hover:bg-white/10 rounded-lg">
+                🏢 Dashboard negocio
+              </Link>
+
+              <div className="border-t border-white/10 my-1" />    
+
+              <Link
+                href="/dashboard/estadisticas"
+              className="w-full text-left px-3 py-2 text-sm hover:bg-white/10 rounded-lg">
+                📊 Estadísticas
+              </Link>
+              <div className="border-t border-white/10 my-1" />
+
+              <Link
+                href="/dashboard/configuracion"
+              className="w-full text-left px-3 py-2 text-sm hover:bg-white/10 rounded-lg">
+                ⚙️ Configuración
+              </Link>
+
+              <div className="border-t border-white/10 my-1" />
+
+              {/* LOGOUT REAL */}
+              <button
+                onClick={handleLogout}
+                className="w-full text-left px-3 py-2 text-sm text-red-400 hover:bg-red-500/10 rounded-lg"
+              >
+                🚪 Cerrar sesión
+              </button>
+
+            </div>
+          )}
+
+        </div>
+
+        
 
       </div>
 

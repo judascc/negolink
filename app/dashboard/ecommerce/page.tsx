@@ -2,42 +2,61 @@
 
 const products = [
   {
-    name: "Kit Emprendedor Digital",
-    price: "120.000 COP",
-    store: "NegoLink Store",
-    rating: 4.8,
-    tag: "🔥 Top ventas",
+    name: "⚡ Landing IA Converter",
+    price: "180.000 COP",
+    desc: "Landing page optimizada para convertir visitas en clientes automáticamente.",
+    features: [
+      "Diseño IA optimizado",
+      "CTA de alta conversión",
+      "Integración WhatsApp",
+      "Hosting incluido",
+    ],
+    tag: "🔥 Alta conversión",
   },
   {
-    name: "Tienda online lista en 48h",
-    price: "350.000 COP",
-    store: "Dev Studio Boyacá",
-    rating: 4.9,
-    tag: "⚡ Rápido",
+    name: "🛒 Tienda Online Full Stack",
+    price: "450.000 COP",
+    desc: "Tienda completa lista para vender productos físicos o digitales.",
+    features: [
+      "Carrito de compras",
+      "Panel de administración",
+      "Pagos integrados",
+      "Hosting + dominio setup",
+    ],
+    tag: "⚡ Lista para vender",
   },
   {
-    name: "Curso Ecommerce desde cero",
-    price: "80.000 COP",
-    store: "Academia Digital",
-    rating: 4.7,
-    tag: "📚 Educación",
+    name: "🧠 Blog SEO Automático",
+    price: "220.000 COP",
+    desc: "Blog que genera tráfico orgánico con artículos optimizados por IA.",
+    features: [
+      "SEO automático",
+      "Generación de artículos IA",
+      "Indexación Google",
+      "Optimización keywords",
+    ],
+    tag: "📈 Tráfico orgánico",
   },
   {
-    name: "Pack Dropshipping automático",
-    price: "250.000 COP",
-    store: "Smart Dropship",
-    rating: 4.6,
-    tag: "🚀 Escalable",
+    name: "🚀 Negocio Digital Completo",
+    price: "890.000 COP",
+    desc: "Sistema completo: landing + blog + tienda + automatización.",
+    features: [
+      "Web completa empresarial",
+      "Automatización IA",
+      "Hosting + dominio",
+      "Mantenimiento mensual",
+    ],
+    tag: "💎 Premium",
   },
 ];
 
 const categories = [
   "Todos",
-  "Dropshipping",
-  "Servicios digitales",
-  "Cursos",
-  "Herramientas",
-  "Plantillas",
+  "Landing Pages",
+  "Tiendas Online",
+  "Blogs SEO",
+  "Negocios completos",
 ];
 
 export default function EcommercePage() {
@@ -45,28 +64,28 @@ export default function EcommercePage() {
     <div className="space-y-4">
 
       {/* HEADER */}
-      <div className="rounded-2xl border border-white/10 bg-black/40 p-4">
+      <div className="rounded-2xl border border-white/10 bg-black/40 p-5">
         <h1 className="text-xl font-bold text-white">
-          🛒 Ecommerce Inteligente
+          🛒 Infraestructura Ecommerce IA
         </h1>
-        <p className="text-xs text-white/40">
-          Compra, vende y crea negocios digitales dentro del ecosistema NegoLink
+        <p className="text-xs text-white/50 mt-1">
+          Construimos negocios digitales completos listos para vender en 24-72h
         </p>
       </div>
 
-      {/* IA INSIGHT */}
-      <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#a449a3]/10 to-[#2dd4bf]/10 p-4">
+      {/* IA CORE */}
+      <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#a449a3]/10 to-[#2dd4bf]/10 p-5">
 
         <h3 className="text-white font-semibold">
-          🧠 IA Ecommerce Assistant
+          🧠 Motor IA de Ecommerce
         </h3>
 
         <p className="text-xs text-white/60 mt-2">
-          La IA detecta productos con alto potencial de venta en tu región.
+          Detectamos tu idea y la convertimos en un negocio digital funcional automáticamente.
         </p>
 
-        <button className="mt-3 px-3 py-2 rounded-lg bg-[#a449a3]/20 border border-[#a449a3]/30 text-xs text-[#a449a3] hover:bg-[#a449a3]/30 transition">
-          Analizar mercado
+        <button className="mt-3 px-4 py-2 rounded-lg bg-[#a449a3]/20 border border-[#a449a3]/30 text-xs text-[#a449a3] hover:bg-[#a449a3]/30 transition">
+          Analizar idea de negocio
         </button>
 
       </div>
@@ -106,25 +125,29 @@ export default function EcommercePage() {
               <span className="text-[10px] text-[#2dd4bf]">
                 {p.tag}
               </span>
-              <span className="text-[10px] text-white/40">
-                ⭐ {p.rating}
-              </span>
             </div>
 
-            {/* PRODUCT NAME */}
+            {/* NAME */}
             <h2 className="text-white font-semibold">
               {p.name}
             </h2>
 
-            {/* STORE */}
-            <p className="text-xs text-white/40 mt-1">
-              🏪 {p.store}
-            </p>
-
             {/* PRICE */}
-            <p className="text-sm text-[#a449a3] mt-2 font-semibold">
+            <p className="text-sm text-[#a449a3] mt-1 font-semibold">
               {p.price}
             </p>
+
+            {/* DESC */}
+            <p className="text-xs text-white/50 mt-2">
+              {p.desc}
+            </p>
+
+            {/* FEATURES */}
+            <ul className="mt-3 space-y-1 text-xs text-white/40">
+              {p.features.map((f) => (
+                <li key={f}>• {f}</li>
+              ))}
+            </ul>
 
             {/* ACTIONS */}
             <div className="flex gap-2 mt-4">
@@ -134,7 +157,7 @@ export default function EcommercePage() {
                 bg-white/10 hover:bg-white/20
                 text-xs transition
               ">
-                Ver detalle
+                Ver demo
               </button>
 
               <button className="
@@ -143,7 +166,7 @@ export default function EcommercePage() {
                 text-black text-xs font-semibold
                 hover:scale-105 transition
               ">
-                Comprar
+                Solicitar
               </button>
 
             </div>
@@ -153,15 +176,15 @@ export default function EcommercePage() {
 
       </div>
 
-      {/* FOOTER INSIGHT */}
-      <div className="rounded-2xl border border-white/10 bg-black/40 p-4">
+      {/* INSIGHT */}
+      <div className="rounded-2xl border border-white/10 bg-black/40 p-5">
 
         <h3 className="text-white font-semibold">
-          📊 Insight de mercado
+          📊 Insight IA
         </h3>
 
         <p className="text-xs text-white/50 mt-2">
-          Los productos digitales están creciendo más rápido en tu región que los físicos.
+          En 2026 los negocios sin presencia digital pierden hasta 70% de clientes potenciales locales.
         </p>
 
       </div>
